@@ -1,0 +1,26 @@
+version: "3"
+services:
+  redis:
+    image: redis
+
+  db:
+    image: postgres:9.4
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+  vote:
+    build: /home/ameena/example-voting-app/vote
+####    name: voting-app
+    ports:
+      - 5000:80
+
+  worker:
+    build: /home/ameena/example-voting-app/worker
+#####    name: worker-app
+
+  result:
+    build: /home/ameena/example-voting-app/result
+#####    name: result-app
+    ports:
+      - 5001:80
